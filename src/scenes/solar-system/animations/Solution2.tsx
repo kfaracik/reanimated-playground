@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
 import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withTiming,
+    Easing,
+    useAnimatedStyle,
+    useSharedValue,
+    withRepeat,
+    withTiming,
 } from "react-native-reanimated";
 
 const RADIUS = 120;
