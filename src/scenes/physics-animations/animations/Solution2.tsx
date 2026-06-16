@@ -5,14 +5,14 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import Animated, {
+  SharedValue,
   useAnimatedReaction,
   useAnimatedStyle,
-  useDerivedValue,
   useSharedValue,
   withDecay,
 } from "react-native-reanimated";
 
-const CONTAINER_SIZE = 400;
+const CONTAINER_SIZE = 300;
 const BORDER_WIDTH = 4;
 const BALL_DIAMETER = 60;
 const BALL_RADIUS = BALL_DIAMETER / 2;
@@ -30,55 +30,46 @@ function clamp(val: number, min: number, max: number) {
   return Math.max(min, Math.min(max, val));
 }
 
+function getDeltaTime(prevTime: SharedValue<number>): number {
+  "worklet";
+  const now = Date.now();
+  const dt = now - prevTime.value;
+  prevTime.value = now;
+  return dt;
+}
+
 export default function PhysicsBall() {
   const x = useSharedValue(CONTAINER_SIZE / 2);
   const y = useSharedValue(CONTAINER_SIZE / 2);
 
-  const prevX = useSharedValue(CONTAINER_SIZE / 2);
-  const prevY = useSharedValue(CONTAINER_SIZE / 2);
-  const prevTimeX = useSharedValue(0);
-  const prevTimeY = useSharedValue(0);
+  const prevTimeX = useSharedValue(Date.now());
+  const prevTimeY = useSharedValue(Date.now());
 
   const isGrabbed = useSharedValue(false);
 
   const startX = useSharedValue(0);
   const startY = useSharedValue(0);
 
-  const velocityX = useDerivedValue(() => {
-    const now = Date.now();
-    const dt = now - prevTimeX.value;
-    const v = dt > 0 ? ((x.value - prevX.value) / dt) * 1000 : 0;
-
-    prevX.value = x.value;
-    prevTimeX.value = now;
-    return v;
-  });
-
-  const velocityY = useDerivedValue(() => {
-    const now = Date.now();
-    const dt = now - prevTimeY.value;
-    const v = dt > 0 ? ((y.value - prevY.value) / dt) * 1000 : 0;
-
-    prevY.value = y.value;
-    prevTimeY.value = now;
-    return v;
-  });
-
   useAnimatedReaction(
     () => x.value,
-    (currentX) => {
-      if (isGrabbed.value) return;
+    (currentX, previousX) => {
+      if (isGrabbed.value || previousX === null) return;
 
-      if (currentX <= minX && velocityX.value < 0) {
+      const dt = getDeltaTime(prevTimeX);
+      if (dt <= 0) return;
+
+      const v = ((currentX - previousX) / dt) * 1000;
+
+      if (currentX <= minX && v < 0) {
         x.value = minX;
         x.value = withDecay({
-          velocity: Math.abs(velocityX.value) * ELASTICITY,
+          velocity: Math.abs(v) * ELASTICITY,
           deceleration: FRICTION,
         });
-      } else if (currentX >= maxX && velocityX.value > 0) {
+      } else if (currentX >= maxX && v > 0) {
         x.value = maxX;
         x.value = withDecay({
-          velocity: -Math.abs(velocityX.value) * ELASTICITY,
+          velocity: -Math.abs(v) * ELASTICITY,
           deceleration: FRICTION,
         });
       }
@@ -87,19 +78,24 @@ export default function PhysicsBall() {
 
   useAnimatedReaction(
     () => y.value,
-    (currentY) => {
-      if (isGrabbed.value) return;
+    (currentY, previousY) => {
+      if (isGrabbed.value || previousY === null) return;
 
-      if (currentY <= minY && velocityY.value < 0) {
+      const dt = getDeltaTime(prevTimeY);
+      if (dt <= 0) return;
+
+      const v = ((currentY - previousY) / dt) * 1000;
+
+      if (currentY <= minY && v < 0) {
         y.value = minY;
         y.value = withDecay({
-          velocity: Math.abs(velocityY.value) * ELASTICITY,
+          velocity: Math.abs(v) * ELASTICITY,
           deceleration: FRICTION,
         });
-      } else if (currentY >= maxY && velocityY.value > 0) {
+      } else if (currentY >= maxY && v > 0) {
         y.value = maxY;
         y.value = withDecay({
-          velocity: -Math.abs(velocityY.value) * ELASTICITY,
+          velocity: -Math.abs(v) * ELASTICITY,
           deceleration: FRICTION,
         });
       }
@@ -120,8 +116,6 @@ export default function PhysicsBall() {
       const now = Date.now();
       prevTimeX.value = now;
       prevTimeY.value = now;
-      prevX.value = x.value;
-      prevY.value = y.value;
 
       isGrabbed.value = false;
 
