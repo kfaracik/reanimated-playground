@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Solution from "./animations/Solution1";
+import Solution from "./SolaarSystem3D";
 
 type TranslationFunction = (key: string) => string;
 
@@ -22,8 +22,10 @@ export default function SolarSystemScene({
         >
           <Text style={styles.backButtonText}>{t("solarSystem.back")}</Text>
         </Pressable>
-        <Text style={styles.title}>{t("solarSystem.title")}</Text>
-        <Text style={styles.subtitle}>{t("solarSystem.subtitle")}</Text>
+        <Text style={styles.title}>{t("groups.solarSystem3d.title")}</Text>
+        <Text style={styles.subtitle}>
+          {t("groups.solarSystem3d.description")}
+        </Text>
       </View>
 
       <View style={styles.stage}>

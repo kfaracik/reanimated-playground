@@ -13,7 +13,7 @@ const en = {
     },
     solarSystem3d: {
       title: "Solar System 3D",
-      description: "View the 3D orbit demo with a single solution.",
+      description: "Explore a single-solution 3D orbit demo.",
     },
     physicsAnimations: {
       title: "Physics Animations",
