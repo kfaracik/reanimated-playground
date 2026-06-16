@@ -1,16 +1,16 @@
 import { StyleSheet, View } from "react-native";
 import {
-  Gesture,
-  GestureDetector,
-  GestureHandlerRootView,
+    Gesture,
+    GestureDetector,
+    GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import Animated, {
-  SharedValue,
-  useAnimatedReaction,
-  useAnimatedStyle,
-  useFrameCallback,
-  useSharedValue,
-  withDecay,
+    SharedValue,
+    useAnimatedReaction,
+    useAnimatedStyle,
+    useFrameCallback,
+    useSharedValue,
+    withDecay,
 } from "react-native-reanimated";
 
 const CONTAINER_SIZE = 300;
@@ -56,7 +56,7 @@ function checkAndApplyBounce(
   }
 }
 
-export default function PhysicsBall() {
+export default function Solution1() {
   const x = useSharedValue(CONTAINER_SIZE / 2);
   const y = useSharedValue(CONTAINER_SIZE / 2);
 

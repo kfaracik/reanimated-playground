@@ -1,5 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
-import SvgOrbitPlaceholder from "./PhysicsAnimationsPlaceholder";
+import { StyleSheet } from "react-native";
+import TabbedScene, { SolutionEntry } from "../shared/TabbedScene";
+import Solution1 from "./animations/Solution1";
+import Solution2 from "./animations/Solution2";
 
 type TranslationFunction = (key: string) => string;
 
@@ -10,32 +12,30 @@ export default function PhysicsAnimationsScene({
   t: TranslationFunction;
   onBack: () => void;
 }) {
-  return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <BackButton onPress={onBack} label={t("svgAnimations.back")} />
-        <Text style={styles.title}>{t("svgAnimations.title")}</Text>
-        <Text style={styles.subtitle}>{t("svgAnimations.subtitle")}</Text>
-      </View>
+  const solutions: SolutionEntry[] = [
+    {
+      id: "solution1",
+      title: "Solution 1",
+      description: "Example using useFrameCallback.",
+      component: <Solution1 />,
+    },
+    {
+      id: "solution2",
+      title: "Solution 2",
+      description: "Example using withDecay and useDerivedValue.",
+      component: <Solution2 />,
+    },
+  ];
 
-      <View style={styles.stage}>
-        <SvgOrbitPlaceholder />
-      </View>
-    </View>
-  );
-}
-
-function BackButton({
-  label,
-  onPress,
-}: {
-  label: string;
-  onPress: () => void;
-}) {
   return (
-    <Text onPress={onPress} style={styles.backButton}>
-      {label}
-    </Text>
+    <TabbedScene
+      t={t}
+      titleKey="physicsAnimations.title"
+      subtitleKey="physicsAnimations.subtitle"
+      backLabelKey="physicsAnimations.back"
+      onBack={onBack}
+      solutions={solutions}
+    />
   );
 }
 
