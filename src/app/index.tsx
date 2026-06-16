@@ -6,10 +6,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import "../i18n";
 import MainMenu from "../scenes/main-menu/MainMenu";
 import PhysicsAnimationsScene from "../scenes/physics-animations/PhysicsAnimationsScene";
+import SolarSystem3DScene from "../scenes/solar-system-3d/SolarSystemScene";
 import SolarSystemScene from "../scenes/solar-system/SolarSystemScene";
 import SvgAnimationsScene from "../scenes/svg-animations/SvgAnimationsScene";
 
-type Screen = "menu" | "solar-system" | "svg-animations" | "physics-animations";
+type Screen =
+  | "menu"
+  | "solar-system"
+  | "solar-system-3d"
+  | "svg-animations"
+  | "physics-animations";
 
 export default function HomeScreen() {
   const { t } = useTranslation();
@@ -24,12 +30,16 @@ export default function HomeScreen() {
           <MainMenu
             t={t}
             onOpenSolarSystem={() => setScreen("solar-system")}
+            onOpenSolarSystem3D={() => setScreen("solar-system-3d")}
             onOpenSvgAnimations={() => setScreen("svg-animations")}
             onOpenPhysicsAnimations={() => setScreen("physics-animations")}
           />
         )}
         {screen === "solar-system" && (
           <SolarSystemScene t={t} onBack={() => setScreen("menu")} />
+        )}
+        {screen === "solar-system-3d" && (
+          <SolarSystem3DScene t={t} onBack={() => setScreen("menu")} />
         )}
         {screen === "svg-animations" && (
           <SvgAnimationsScene t={t} onBack={() => setScreen("menu")} />

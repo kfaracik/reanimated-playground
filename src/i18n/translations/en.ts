@@ -11,6 +11,10 @@ const en = {
       title: "SVG Animations",
       description: "Reserved space for a simple circular SVG line animation.",
     },
+    solarSystem3d: {
+      title: "Solar System 3D",
+      description: "View the 3D orbit demo with a single solution.",
+    },
     physicsAnimations: {
       title: "Physics Animations",
       description:

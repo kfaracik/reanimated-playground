@@ -5,11 +5,13 @@ type TranslationFunction = (key: string) => string;
 export default function MainMenu({
   t,
   onOpenSolarSystem,
+  onOpenSolarSystem3D,
   onOpenSvgAnimations,
   onOpenPhysicsAnimations,
 }: {
   t: TranslationFunction;
   onOpenSolarSystem: () => void;
+  onOpenSolarSystem3D: () => void;
   onOpenSvgAnimations: () => void;
   onOpenPhysicsAnimations: () => void;
 }) {
@@ -24,6 +26,11 @@ export default function MainMenu({
           title={t("groups.solarSystem.title")}
           description={t("groups.solarSystem.description")}
           onPress={onOpenSolarSystem}
+        />
+        <TaskGroupCard
+          title={t("groups.solarSystem3d.title")}
+          description={t("groups.solarSystem3d.description")}
+          onPress={onOpenSolarSystem3D}
         />
         <TaskGroupCard
           title={t("groups.svgAnimations.title")}
