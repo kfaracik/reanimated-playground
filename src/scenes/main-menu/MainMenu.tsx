@@ -6,10 +6,12 @@ export default function MainMenu({
   t,
   onOpenSolarSystem,
   onOpenSvgAnimations,
+  onOpenPhysicsAnimations,
 }: {
   t: TranslationFunction;
   onOpenSolarSystem: () => void;
   onOpenSvgAnimations: () => void;
+  onOpenPhysicsAnimations: () => void;
 }) {
   return (
     <View style={styles.container}>
@@ -27,6 +29,11 @@ export default function MainMenu({
           title={t("groups.svgAnimations.title")}
           description={t("groups.svgAnimations.description")}
           onPress={onOpenSvgAnimations}
+        />
+        <TaskGroupCard
+          title={t("groups.physicsAnimations.title")}
+          description={t("groups.physicsAnimations.description")}
+          onPress={onOpenPhysicsAnimations}
         />
       </View>
     </View>

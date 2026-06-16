@@ -5,10 +5,11 @@ import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import "../i18n";
 import MainMenu from "../scenes/main-menu/MainMenu";
+import PhysicsAnimationsScene from "../scenes/physics-animations/PhysicsAnimationsScene";
 import SolarSystemScene from "../scenes/solar-system/SolarSystemScene";
 import SvgAnimationsScene from "../scenes/svg-animations/SvgAnimationsScene";
 
-type Screen = "menu" | "solar-system" | "svg-animations";
+type Screen = "menu" | "solar-system" | "svg-animations" | "physics-animations";
 
 export default function HomeScreen() {
   const { t } = useTranslation();
@@ -24,6 +25,7 @@ export default function HomeScreen() {
             t={t}
             onOpenSolarSystem={() => setScreen("solar-system")}
             onOpenSvgAnimations={() => setScreen("svg-animations")}
+            onOpenPhysicsAnimations={() => setScreen("physics-animations")}
           />
         )}
         {screen === "solar-system" && (
@@ -31,6 +33,9 @@ export default function HomeScreen() {
         )}
         {screen === "svg-animations" && (
           <SvgAnimationsScene t={t} onBack={() => setScreen("menu")} />
+        )}
+        {screen === "physics-animations" && (
+          <PhysicsAnimationsScene t={t} onBack={() => setScreen("menu")} />
         )}
       </SafeAreaView>
     </View>

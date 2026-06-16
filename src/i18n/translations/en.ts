@@ -11,6 +11,11 @@ const en = {
       title: "SVG Animations",
       description: "Reserved space for a simple circular SVG line animation.",
     },
+    physicsAnimations: {
+      title: "Physics Animations",
+      description:
+        "Explore spring-based and physics-driven animation examples.",
+    },
   },
   solarSystem: {
     title: "Solar System",
@@ -42,6 +47,13 @@ const en = {
     placeholderTitle: "Animation placeholder",
     placeholderDescription:
       "This section is ready for the SVG orbit animation.",
+  },
+  physicsAnimations: {
+    title: "Physics Animations",
+    subtitle: "Demos of springs, gravity and physics-driven motion.",
+    back: "Back to menu",
+    placeholderTitle: "Physics demo",
+    placeholderDescription: "Explore physics-based animation examples.",
   },
 } as const;
 
