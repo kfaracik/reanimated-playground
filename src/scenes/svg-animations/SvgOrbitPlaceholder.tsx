@@ -1,87 +1,126 @@
-import { useTranslation } from "react-i18next";
-import { StyleSheet, Text, View } from "react-native";
-import Svg, { Circle, Line } from "react-native-svg";
+import { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import Animated, {
+  Easing,
+  useAnimatedProps,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from "react-native-reanimated";
+import Svg, { Path } from "react-native-svg";
 
-export default function SvgOrbitPlaceholder() {
-  const { t } = useTranslation();
+const AnimatedPath = Animated.createAnimatedComponent(Path);
+
+const SIZE = 450;
+const CX = SIZE / 2;
+const CY = SIZE / 2;
+const BASE_RADIUS = 50;
+const HALF_L = Math.PI * BASE_RADIUS;
+const KAPPA = 0.5522847498;
+
+export default function Solution4() {
+  const progress = useSharedValue(0);
+
+  useEffect(() => {
+    progress.value = withRepeat(
+      withTiming(1, {
+        duration: 2000,
+        easing: Easing.inOut(Easing.ease),
+      }),
+      -1,
+      true,
+    );
+  }, []);
+
+  const animatedProps = useAnimatedProps(() => {
+    const p = progress.value;
+
+    const growth = 1 + 0.5 * Math.pow(p, 2);
+    const R = BASE_RADIUS * growth;
+    const L = HALF_L * growth;
+    const K = R * KAPPA;
+
+    const tCenter = p;
+    const tSides = Math.pow(p, 1.4);
+    const tEnds = Math.pow(p, 2.4);
+
+    const pct = 0.5;
+    const segL = L * pct;
+    const hFlatIn = segL / 3;
+    const hFlatOut = (L - segL) / 3;
+
+    const x2 = CX;
+    const y2 = CY - R * tCenter;
+
+    const cp3_x = CX - hFlatIn + (hFlatIn - K) * tCenter;
+    const cp3_y = y2;
+
+    const x1 = CX - segL + (-R + segL) * tSides;
+    const y1 = CY;
+
+    const vx1 = 1 - Math.pow(p, 2);
+    const vy1 = Math.pow(p, 2);
+    const vlen1 = Math.sqrt(vx1 * vx1 + vy1 * vy1);
+    const nx1 = vx1 / vlen1;
+    const ny1 = vy1 / vlen1;
+
+    const h1_in = hFlatIn + (K - hFlatIn) * tSides;
+    const cp2_x = x1 + h1_in * nx1;
+    const cp2_y = y1 - h1_in * ny1;
+
+    const h1_out = hFlatOut + (K - hFlatOut) * tSides;
+    const cp1_x = x1 - h1_out * nx1;
+    const cp1_y = y1 + h1_out * ny1;
+
+    const x0 = CX - L + L * tEnds;
+    const y0 = CY + R * tEnds;
+
+    const cp0_x = CX - L + hFlatOut + (L - hFlatOut - K) * tEnds;
+    const cp0_y = y0;
+
+    const cp4_x = 2 * CX - cp3_x;
+    const cp4_y = cp3_y;
+
+    const x3 = 2 * CX - x1;
+    const y3 = y1;
+
+    const cp5_x = 2 * CX - cp2_x;
+    const cp5_y = cp2_y;
+
+    const cp6_x = 2 * CX - cp1_x;
+    const cp6_y = cp1_y;
+
+    const x4 = 2 * CX - x0;
+    const y4 = y0;
+
+    const cp7_x = 2 * CX - cp0_x;
+    const cp7_y = cp0_y;
+
+    const d = `M ${x0} ${y0} C ${cp0_x} ${cp0_y}, ${cp1_x} ${cp1_y}, ${x1} ${y1} C ${cp2_x} ${cp2_y}, ${cp3_x} ${cp3_y}, ${x2} ${y2} C ${cp4_x} ${cp4_y}, ${cp5_x} ${cp5_y}, ${x3} ${y3} C ${cp6_x} ${cp6_y}, ${cp7_x} ${cp7_y}, ${x4} ${y4}`;
+
+    return { d };
+  });
 
   return (
     <View style={styles.container}>
-      <View style={styles.card}>
-        <Svg
-          width="100%"
-          height="100%"
-          viewBox="0 0 240 240"
-          style={styles.svg}
-        >
-          <Circle
-            cx="120"
-            cy="120"
-            r="88"
-            stroke="#1d4ed8"
-            strokeWidth="3"
-            strokeDasharray="10 10"
-            fill="none"
-          />
-          <Circle cx="120" cy="120" r="16" fill="#facc15" />
-          <Line
-            x1="120"
-            y1="44"
-            x2="120"
-            y2="196"
-            stroke="#ffffff"
-            strokeWidth="5"
-            strokeLinecap="round"
-          />
-        </Svg>
-      </View>
-
-      <Text style={styles.title}>{t("svgAnimations.placeholderTitle")}</Text>
-      <Text style={styles.description}>
-        {t("svgAnimations.placeholderDescription")}
-      </Text>
+      <Svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`}>
+        <AnimatedPath
+          animatedProps={animatedProps}
+          stroke="#ff0000"
+          strokeWidth={6}
+          fill="none"
+          strokeLinecap="round"
+        />
+      </Svg>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
     flex: 1,
-  },
-  card: {
-    width: 260,
-    height: 260,
-    borderRadius: 32,
-    borderWidth: 1,
-    borderColor: "#ffffff1f",
-    backgroundColor: "#10172b",
+    backgroundColor: "#000",
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "#000000",
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2,
-    shadowRadius: 18,
-    elevation: 6,
-  },
-  svg: {
-    width: "100%",
-    height: "100%",
-  },
-  title: {
-    marginTop: 20,
-    color: "#ffffff",
-    fontSize: 18,
-    fontWeight: "700",
-  },
-  description: {
-    marginTop: 8,
-    color: "#94a3b8",
-    fontSize: 14,
-    textAlign: "center",
-    lineHeight: 20,
-    paddingHorizontal: 24,
   },
 });
