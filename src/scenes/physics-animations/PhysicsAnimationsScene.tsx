@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import TabbedScene, { SolutionEntry } from "../shared/TabbedScene";
+import TabbedScene, { SolutionEntry } from "../../app/shared/TabbedScene";
 import Solution1 from "./animations/Solution1";
 import Solution2 from "./animations/Solution2";
 
