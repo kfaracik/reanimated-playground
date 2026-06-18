@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import "../i18n";
+import KeyboardAvoidingScene from "../scenes/keyboard-avoiding/KeyboardAvoidingScene";
 import MainMenu from "../scenes/main-menu/MainMenu";
 import PhysicsAnimationsScene from "../scenes/physics-animations/PhysicsAnimationsScene";
 import SolarSystem3DScene from "../scenes/solar-system-3d/SolarSystemScene";
@@ -14,6 +15,7 @@ type Screen =
   | "menu"
   | "solar-system"
   | "solar-system-3d"
+  | "keyboard-avoiding"
   | "svg-animations"
   | "physics-animations";
 
@@ -31,9 +33,13 @@ export default function HomeScreen() {
             t={t}
             onOpenSolarSystem={() => setScreen("solar-system")}
             onOpenSolarSystem3D={() => setScreen("solar-system-3d")}
+            onOpenKeyboardAvoiding={() => setScreen("keyboard-avoiding")}
             onOpenSvgAnimations={() => setScreen("svg-animations")}
             onOpenPhysicsAnimations={() => setScreen("physics-animations")}
           />
+        )}
+        {screen === "keyboard-avoiding" && (
+          <KeyboardAvoidingScene t={t} onBack={() => setScreen("menu")} />
         )}
         {screen === "solar-system" && (
           <SolarSystemScene t={t} onBack={() => setScreen("menu")} />

@@ -11,6 +11,10 @@ const en = {
       title: "SVG Animations",
       description: "Reserved space for a simple circular SVG line animation.",
     },
+    keyboard: {
+      title: "Keyboard Avoiding",
+      description: "Example showing native KeyboardAvoidingView behavior.",
+    },
     solarSystem3d: {
       title: "Solar System 3D",
       description: "Explore a single-solution 3D orbit demo.",
@@ -58,6 +62,17 @@ const en = {
     back: "Back to menu",
     placeholderTitle: "Physics demo",
     placeholderDescription: "Explore physics-based animation examples.",
+  },
+  keyboardAvoiding: {
+    title: "Keyboard Avoiding",
+    subtitle: "Compare an animated solution and a ScrollView solution.",
+    animated: "Animated (Reanimated)",
+    animatedDescription: "Use Reanimated shared values and animated styles.",
+    scrollView: "ScrollView",
+    scrollViewDescription: "Use a ScrollView/KeyboardAvoidingView approach.",
+  },
+  common: {
+    back: "Back to menu",
   },
 } as const;
 
