@@ -29,6 +29,11 @@ const pl = {
       description:
         "Linia gradientowa rysowana na warstwie tła przy użyciu Skia.",
     },
+    onboarding: {
+      title: "Animacja Onboardingu",
+      description:
+        "Kompletna animacja onboardingowa — przykład Reanimated i Skia.",
+    },
   },
   solarSystem: {
     title: "Układ Słoneczny",

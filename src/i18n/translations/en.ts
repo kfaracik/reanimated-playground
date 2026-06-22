@@ -28,6 +28,11 @@ const en = {
       title: "Skia Gradient",
       description: "Background-layer gradient line drawn with Skia.",
     },
+    onboarding: {
+      title: "Onboarding Animation",
+      description:
+        "Full onboarding animation demo showcasing Reanimated and Skia.",
+    },
   },
   solarSystem: {
     title: "Solar System",

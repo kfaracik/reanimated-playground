@@ -1,3 +1,4 @@
+import Onboarding from "@/scenes/onboarding-animation/Onboarding";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -19,7 +20,8 @@ type Screen =
   | "keyboard-avoiding"
   | "svg-animations"
   | "physics-animations"
-  | "skia-gradient";
+  | "skia-gradient"
+  | "onboarding-animation";
 
 export default function HomeScreen() {
   const { t } = useTranslation();
@@ -39,7 +41,11 @@ export default function HomeScreen() {
             onOpenSvgAnimations={() => setScreen("svg-animations")}
             onOpenPhysicsAnimations={() => setScreen("physics-animations")}
             onOpenSkiaGradient={() => setScreen("skia-gradient")}
+            onOnboardingAnimation={() => setScreen("onboarding-animation")}
           />
+        )}
+        {screen === "onboarding-animation" && (
+          <Onboarding t={t} onBack={() => setScreen("menu")} />
         )}
         {screen === "keyboard-avoiding" && (
           <KeyboardAvoidingScene t={t} onBack={() => setScreen("menu")} />
