@@ -24,6 +24,11 @@ const pl = {
       title: "Animacje fizyczne",
       description: "Przykłady oparte na sprężynach i fizyce.",
     },
+    skiaGradient: {
+      title: "Gradient Skia",
+      description:
+        "Linia gradientowa rysowana na warstwie tła przy użyciu Skia.",
+    },
   },
   solarSystem: {
     title: "Układ Słoneczny",
@@ -68,6 +73,10 @@ const pl = {
     scrollView: "ScrollView",
     scrollViewDescription:
       "Podejście wykorzystujące ScrollView/KeyboardAvoidingView.",
+  },
+  skiaGradient: {
+    title: "Gradient Skia",
+    subtitle: "Gradientowa linia tła rysowana za pomocą Skia.",
   },
   common: {
     back: "Wróć do menu",

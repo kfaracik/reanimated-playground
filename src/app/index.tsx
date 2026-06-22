@@ -7,6 +7,7 @@ import "../i18n";
 import KeyboardAvoidingScene from "../scenes/keyboard-avoiding/KeyboardAvoidingScene";
 import MainMenu from "../scenes/main-menu/MainMenu";
 import PhysicsAnimationsScene from "../scenes/physics-animations/PhysicsAnimationsScene";
+import SkiaGradientScene from "../scenes/skia-gradient/SkiaGradientScene";
 import SolarSystem3DScene from "../scenes/solar-system-3d/SolarSystemScene";
 import SolarSystemScene from "../scenes/solar-system/SolarSystemScene";
 import SvgAnimationsScene from "../scenes/svg-animations/SvgAnimationsScene";
@@ -17,7 +18,8 @@ type Screen =
   | "solar-system-3d"
   | "keyboard-avoiding"
   | "svg-animations"
-  | "physics-animations";
+  | "physics-animations"
+  | "skia-gradient";
 
 export default function HomeScreen() {
   const { t } = useTranslation();
@@ -36,6 +38,7 @@ export default function HomeScreen() {
             onOpenKeyboardAvoiding={() => setScreen("keyboard-avoiding")}
             onOpenSvgAnimations={() => setScreen("svg-animations")}
             onOpenPhysicsAnimations={() => setScreen("physics-animations")}
+            onOpenSkiaGradient={() => setScreen("skia-gradient")}
           />
         )}
         {screen === "keyboard-avoiding" && (
@@ -52,6 +55,9 @@ export default function HomeScreen() {
         )}
         {screen === "physics-animations" && (
           <PhysicsAnimationsScene t={t} onBack={() => setScreen("menu")} />
+        )}
+        {screen === "skia-gradient" && (
+          <SkiaGradientScene t={t} onBack={() => setScreen("menu")} />
         )}
       </SafeAreaView>
     </View>

@@ -9,6 +9,7 @@ export default function MainMenu({
   onOpenKeyboardAvoiding,
   onOpenSvgAnimations,
   onOpenPhysicsAnimations,
+  onOpenSkiaGradient,
 }: {
   t: TranslationFunction;
   onOpenSolarSystem: () => void;
@@ -16,6 +17,7 @@ export default function MainMenu({
   onOpenKeyboardAvoiding: () => void;
   onOpenSvgAnimations: () => void;
   onOpenPhysicsAnimations: () => void;
+  onOpenSkiaGradient?: () => void;
 }) {
   return (
     <View style={styles.container}>
@@ -49,6 +51,13 @@ export default function MainMenu({
           description={t("groups.physicsAnimations.description")}
           onPress={onOpenPhysicsAnimations}
         />
+        {onOpenSkiaGradient && (
+          <TaskGroupCard
+            title={t("groups.skiaGradient.title")}
+            description={t("groups.skiaGradient.description")}
+            onPress={onOpenSkiaGradient}
+          />
+        )}
       </View>
     </View>
   );

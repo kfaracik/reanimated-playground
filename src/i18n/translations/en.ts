@@ -24,6 +24,10 @@ const en = {
       description:
         "Explore spring-based and physics-driven animation examples.",
     },
+    skiaGradient: {
+      title: "Skia Gradient",
+      description: "Background-layer gradient line drawn with Skia.",
+    },
   },
   solarSystem: {
     title: "Solar System",
@@ -73,6 +77,10 @@ const en = {
   },
   common: {
     back: "Back to menu",
+  },
+  skiaGradient: {
+    title: "Skia Gradient",
+    subtitle: "Gradiented background line drawn with Skia.",
   },
 } as const;
 
