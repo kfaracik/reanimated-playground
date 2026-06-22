@@ -53,7 +53,7 @@ export default function HomeScreen() {
           <Onboarding onBack={() => setScreen("menu")} />
         )}
         {screen === "onboarding-animated-scroll" && (
-          <OnboardingAnimatedScroll t={t} onBack={() => setScreen("menu")} />
+          <OnboardingAnimatedScroll onBack={() => setScreen("menu")} />
         )}
         {screen === "keyboard-avoiding" && (
           <KeyboardAvoidingScene t={t} onBack={() => setScreen("menu")} />

@@ -3,10 +3,9 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import Animated, { SharedValue } from "react-native-reanimated";
 import { SLIDES } from "../constants/slides";
 import { useSlideAnimation } from "../hooks/useSlideAnimation";
-import { SlideData } from "../types";
 
 type SlideItemProps = {
-  slide: SlideData;
+  slide: (typeof SLIDES)[number];
   index: number;
   scrollX: SharedValue<number>;
   width: number;
@@ -24,12 +23,12 @@ export const SlideItem = React.memo(
 
     return (
       <View style={[styles.slide, { width, height }]}>
-        {!slide.image ? (
+        {slide.isLogo ? (
           <View style={styles.logoSpacer} />
         ) : (
           <Animated.View style={[styles.screenshotContainer, animatedImgStyle]}>
             <Image
-              source={slide.image}
+              source={slide.image!}
               style={styles.imageScreenshot}
               resizeMode="cover"
             />
@@ -65,10 +64,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "rgba(255, 255, 255, 0.12)",
     shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 16,
-    },
+    shadowOffset: { width: 0, height: 16 },
     shadowOpacity: 0.55,
     shadowRadius: 20,
   },
