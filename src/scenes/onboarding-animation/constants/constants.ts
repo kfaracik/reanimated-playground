@@ -1,0 +1,1 @@
+export const OVERSCROLL_RESISTANCE = 0.35;
