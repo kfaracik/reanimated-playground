@@ -33,6 +33,11 @@ const en = {
       description:
         "Full onboarding animation demo showcasing Reanimated and Skia.",
     },
+    onboardingAnimatedScroll: {
+      title: "Onboarding Scroll",
+      description:
+        "Animated onboarding experience with horizontal scrolling and pagination.",
+    },
   },
   solarSystem: {
     title: "Solar System",

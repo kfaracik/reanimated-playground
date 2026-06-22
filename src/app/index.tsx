@@ -1,4 +1,4 @@
-import Onboarding from "@/scenes/onboarding-animation/Onboarding";
+import Onboarding from "@/scenes/onboarding-pan-gesture-animation/Onboarding";
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -7,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import "../i18n";
 import KeyboardAvoidingScene from "../scenes/keyboard-avoiding/KeyboardAvoidingScene";
 import MainMenu from "../scenes/main-menu/MainMenu";
+import OnboardingAnimatedScroll from "../scenes/onboarding-animated-scroll/OnboardingAnimatedScroll";
 import PhysicsAnimationsScene from "../scenes/physics-animations/PhysicsAnimationsScene";
 import SkiaGradientScene from "../scenes/skia-gradient/SkiaGradientScene";
 import SolarSystem3DScene from "../scenes/solar-system-3d/SolarSystemScene";
@@ -21,7 +22,8 @@ type Screen =
   | "svg-animations"
   | "physics-animations"
   | "skia-gradient"
-  | "onboarding-animation";
+  | "onboarding-animation"
+  | "onboarding-animated-scroll";
 
 export default function HomeScreen() {
   const { t } = useTranslation();
@@ -42,10 +44,16 @@ export default function HomeScreen() {
             onOpenPhysicsAnimations={() => setScreen("physics-animations")}
             onOpenSkiaGradient={() => setScreen("skia-gradient")}
             onOnboardingAnimation={() => setScreen("onboarding-animation")}
+            onOpenOnboardingAnimatedScroll={() =>
+              setScreen("onboarding-animated-scroll")
+            }
           />
         )}
         {screen === "onboarding-animation" && (
           <Onboarding onBack={() => setScreen("menu")} />
+        )}
+        {screen === "onboarding-animated-scroll" && (
+          <OnboardingAnimatedScroll t={t} onBack={() => setScreen("menu")} />
         )}
         {screen === "keyboard-avoiding" && (
           <KeyboardAvoidingScene t={t} onBack={() => setScreen("menu")} />

@@ -12,6 +12,7 @@ export default function MainMenu({
   onOpenPhysicsAnimations,
   onOpenSkiaGradient,
   onOnboardingAnimation,
+  onOpenOnboardingAnimatedScroll,
 }: {
   t: TranslationFunction;
   onOpenSolarSystem: () => void;
@@ -21,6 +22,7 @@ export default function MainMenu({
   onOpenPhysicsAnimations: () => void;
   onOpenSkiaGradient?: () => void;
   onOnboardingAnimation?: () => void;
+  onOpenOnboardingAnimatedScroll?: () => void;
 }) {
   return (
     <View style={styles.container}>
@@ -65,6 +67,13 @@ export default function MainMenu({
             title={t("groups.onboarding.title")}
             description={t("groups.onboarding.description")}
             onPress={onOnboardingAnimation}
+          />
+        )}
+        {onOpenOnboardingAnimatedScroll && (
+          <TaskGroupCard
+            title={t("groups.onboardingAnimatedScroll.title")}
+            description={t("groups.onboardingAnimatedScroll.description")}
+            onPress={onOpenOnboardingAnimatedScroll}
           />
         )}
       </ScrollView>

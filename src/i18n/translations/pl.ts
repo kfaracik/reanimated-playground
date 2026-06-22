@@ -34,6 +34,11 @@ const pl = {
       description:
         "Kompletna animacja onboardingowa — przykład Reanimated i Skia.",
     },
+    onboardingAnimatedScroll: {
+      title: "Onboarding Scroll",
+      description:
+        "Animacja onboardingu ze scrollowaniem poziomym i paginacją.",
+    },
   },
   solarSystem: {
     title: "Układ Słoneczny",
