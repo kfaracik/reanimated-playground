@@ -83,9 +83,32 @@ const en = {
     placeholderDescription: "Explore physics-based animation examples.",
   },
   sensorSandbox: {
-    title: "Sensor Sandbox",
+    title: "Outside The Box",
     subtitle: "Select a sensor and watch the live animated response.",
     selectorLabel: "Choose sensor value (1..5):",
+    solvedLabel: "PASSED",
+    levels: {
+      accelerometer: {
+        title: "ACCELEROMETER",
+        hint: "Shake the phone rhythmically with moderate force. Overdoing it will drain progress.",
+      },
+      gyroscope: {
+        title: "GYROSCOPE",
+        hint: "Move the dot through one full smooth orbit, like turning a steering wheel. Stops, jerks, and direction changes drain progress.",
+      },
+      magneticField: {
+        title: "MAGNETIC_FIELD",
+        hint: "Bring the top edge of the phone close to a metal object or electronics, then hold it steady.",
+      },
+      rotation: {
+        title: "ROTATION",
+        hint: "Push the layout to an extreme position. Tilt the phone hard diagonally until the rectangle grows dramatically.",
+      },
+      gravity: {
+        title: "GRAVITY",
+        hint: "Hold the phone flat on your palm and guide the bubble into the small center target. Keep your hand still for three seconds.",
+      },
+    },
   },
   keyboardAvoiding: {
     title: "Keyboard Avoiding",

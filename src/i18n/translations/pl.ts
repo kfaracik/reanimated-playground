@@ -80,9 +80,32 @@ const pl = {
     placeholderDescription: "Odkryj przykłady animacji opartych na fizyce.",
   },
   sensorSandbox: {
-    title: "Piaskownica Czujników",
+    title: "Outside The Box",
     subtitle: "Wybierz czujnik i obserwuj animowany odczyt.",
     selectorLabel: "Wybierz wartość czujnika (1..5):",
+    solvedLabel: "ZALICZONY",
+    levels: {
+      accelerometer: {
+        title: "ACCELEROMETER",
+        hint: "Wstrząśnij telefonem rytmicznie i z umiarkowaną siłą. Zbyt mocne ruchy zmniejszą postęp.",
+      },
+      gyroscope: {
+        title: "GYROSCOPE",
+        hint: "Przeprowadź kropkę przez pełne, płynne okrążenie jak przy kręceniu kierownicą. Stop, szarpnięcia i zmiany kierunku zmniejszą postęp.",
+      },
+      magneticField: {
+        title: "MAGNETIC_FIELD",
+        hint: "Zbliż górną krawędź telefonu do metalowego przedmiotu lub elektroniki, a potem przytrzymaj stabilnie.",
+      },
+      rotation: {
+        title: "ROTATION",
+        hint: "Wprowadź układ w skrajną pozycję. Przechyl telefon mocno po przekątnej, aż prostokąt wyraźnie urośnie.",
+      },
+      gravity: {
+        title: "GRAVITY",
+        hint: "Ułóż telefon płasko na dłoni i wprowadź pęcherzyk dokładnie w środek celownika. Nie drgnij ręką przez trzy sekundy.",
+      },
+    },
   },
   keyboardAvoiding: {
     title: "Unikanie klawiatury",

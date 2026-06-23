@@ -74,7 +74,7 @@ export default function HomeScreen() {
           <PhysicsAnimationsScene t={t} onBack={() => setScreen("menu")} />
         )}
         {screen === "sensor-sandbox" && (
-          <SensorSandbox onBack={() => setScreen("menu")} />
+          <SensorSandbox t={t} onBack={() => setScreen("menu")} />
         )}
         {screen === "skia-gradient" && (
           <SkiaGradientScene t={t} onBack={() => setScreen("menu")} />
