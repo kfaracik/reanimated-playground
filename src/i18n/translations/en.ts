@@ -1,6 +1,6 @@
 const en = {
   app: {
-    title: "Pokemon Reanimated v4",
+    title: "Reanimated v4",
   },
   groups: {
     solarSystem: {
