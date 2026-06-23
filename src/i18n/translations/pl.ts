@@ -39,6 +39,10 @@ const pl = {
       description:
         "Animacja onboardingu ze scrollowaniem poziomym i paginacją.",
     },
+    sensorSandbox: {
+      title: "Piaskownica Czujników",
+      description: "Wizualizacja odczytów czujników urządzenia z Reanimated.",
+    },
   },
   solarSystem: {
     title: "Układ Słoneczny",
@@ -74,6 +78,11 @@ const pl = {
     back: "Wróć do menu",
     placeholderTitle: "Demo fizyki",
     placeholderDescription: "Odkryj przykłady animacji opartych na fizyce.",
+  },
+  sensorSandbox: {
+    title: "Piaskownica Czujników",
+    subtitle: "Wybierz czujnik i obserwuj animowany odczyt.",
+    selectorLabel: "Wybierz wartość czujnika (1..5):",
   },
   keyboardAvoiding: {
     title: "Unikanie klawiatury",

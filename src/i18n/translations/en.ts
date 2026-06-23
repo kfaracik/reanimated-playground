@@ -38,6 +38,11 @@ const en = {
       description:
         "Animated onboarding experience with horizontal scrolling and pagination.",
     },
+    sensorSandbox: {
+      title: "Sensor Sandbox",
+      description:
+        "Visualize device sensor inputs with Reanimated animated sensors.",
+    },
   },
   solarSystem: {
     title: "Solar System",
@@ -76,6 +81,11 @@ const en = {
     back: "Back to menu",
     placeholderTitle: "Physics demo",
     placeholderDescription: "Explore physics-based animation examples.",
+  },
+  sensorSandbox: {
+    title: "Sensor Sandbox",
+    subtitle: "Select a sensor and watch the live animated response.",
+    selectorLabel: "Choose sensor value (1..5):",
   },
   keyboardAvoiding: {
     title: "Keyboard Avoiding",

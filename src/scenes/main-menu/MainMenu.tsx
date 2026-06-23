@@ -10,6 +10,7 @@ export default function MainMenu({
   onOpenKeyboardAvoiding,
   onOpenSvgAnimations,
   onOpenPhysicsAnimations,
+  onOpenSensorSandbox,
   onOpenSkiaGradient,
   onOnboardingAnimation,
   onOpenOnboardingAnimatedScroll,
@@ -20,6 +21,7 @@ export default function MainMenu({
   onOpenKeyboardAvoiding: () => void;
   onOpenSvgAnimations: () => void;
   onOpenPhysicsAnimations: () => void;
+  onOpenSensorSandbox?: () => void;
   onOpenSkiaGradient?: () => void;
   onOnboardingAnimation?: () => void;
   onOpenOnboardingAnimatedScroll?: () => void;
@@ -55,6 +57,13 @@ export default function MainMenu({
           description={t("groups.physicsAnimations.description")}
           onPress={onOpenPhysicsAnimations}
         />
+        {onOpenSensorSandbox && (
+          <TaskGroupCard
+            title={t("groups.sensorSandbox.title")}
+            description={t("groups.sensorSandbox.description")}
+            onPress={onOpenSensorSandbox}
+          />
+        )}
         {onOpenSkiaGradient && (
           <TaskGroupCard
             title={t("groups.skiaGradient.title")}

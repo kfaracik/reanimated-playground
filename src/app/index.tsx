@@ -9,6 +9,7 @@ import KeyboardAvoidingScene from "../scenes/keyboard-avoiding/KeyboardAvoidingS
 import MainMenu from "../scenes/main-menu/MainMenu";
 import OnboardingAnimatedScroll from "../scenes/onboarding-animated-scroll/OnboardingAnimatedScroll";
 import PhysicsAnimationsScene from "../scenes/physics-animations/PhysicsAnimationsScene";
+import SensorSandbox from "../scenes/sensor-sandbox/screens/SensorSandbox";
 import SkiaGradientScene from "../scenes/skia-gradient/SkiaGradientScene";
 import SolarSystem3DScene from "../scenes/solar-system-3d/SolarSystemScene";
 import SolarSystemScene from "../scenes/solar-system/SolarSystemScene";
@@ -21,6 +22,7 @@ type Screen =
   | "keyboard-avoiding"
   | "svg-animations"
   | "physics-animations"
+  | "sensor-sandbox"
   | "skia-gradient"
   | "onboarding-animation"
   | "onboarding-animated-scroll";
@@ -42,6 +44,7 @@ export default function HomeScreen() {
             onOpenKeyboardAvoiding={() => setScreen("keyboard-avoiding")}
             onOpenSvgAnimations={() => setScreen("svg-animations")}
             onOpenPhysicsAnimations={() => setScreen("physics-animations")}
+            onOpenSensorSandbox={() => setScreen("sensor-sandbox")}
             onOpenSkiaGradient={() => setScreen("skia-gradient")}
             onOnboardingAnimation={() => setScreen("onboarding-animation")}
             onOpenOnboardingAnimatedScroll={() =>
@@ -69,6 +72,9 @@ export default function HomeScreen() {
         )}
         {screen === "physics-animations" && (
           <PhysicsAnimationsScene t={t} onBack={() => setScreen("menu")} />
+        )}
+        {screen === "sensor-sandbox" && (
+          <SensorSandbox onBack={() => setScreen("menu")} />
         )}
         {screen === "skia-gradient" && (
           <SkiaGradientScene t={t} onBack={() => setScreen("menu")} />
