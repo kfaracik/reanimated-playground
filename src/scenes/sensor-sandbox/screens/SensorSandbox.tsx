@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import SceneScreen from "../../../app/shared/SceneScreen";
 import { GameRunner } from "../components/GameRunner";
 import { LevelBadge } from "../components/LevelBadge";
 import { StickyFooter } from "../components/StickyFooter";
@@ -32,14 +33,13 @@ export default function SensorSandbox({ t, onBack }: SensorSandboxProps) {
   };
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerRow}>
-        <TouchableOpacity style={styles.backButton} onPress={onBack}>
-          <Text style={styles.backButtonText}>{"<"}</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.title}>{t("sensorSandbox.title")}</Text>
-
+    <SceneScreen
+      title={t("sensorSandbox.title")}
+      onBack={onBack}
+      framed={false}
+      contentCentered
+      contentPaddingBottom={130}
+      rightAction={
         <TouchableOpacity
           activeOpacity={0.8}
           style={[styles.hintTrigger, showHint && styles.hintTriggerActive]}
@@ -54,8 +54,15 @@ export default function SensorSandbox({ t, onBack }: SensorSandboxProps) {
             ?
           </Text>
         </TouchableOpacity>
-      </View>
-
+      }
+      footer={
+        <StickyFooter
+          activeLevel={activeLevel}
+          solvedLevels={solvedLevels}
+          onLevelSelect={handleLevelSelect}
+        />
+      }
+    >
       <View style={styles.badgeWrapper}>
         <LevelBadge
           title={t(activeLevelCopy.title)}
@@ -77,59 +84,12 @@ export default function SensorSandbox({ t, onBack }: SensorSandboxProps) {
           onLevelComplete={handleLevelComplete}
         />
       </View>
-
-      <StickyFooter
-        activeLevel={activeLevel}
-        solvedLevels={solvedLevels}
-        onLevelSelect={handleLevelSelect}
-      />
-    </View>
+    </SceneScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 24,
-    backgroundColor: "#09090B",
-  },
-  headerRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-    width: "100%",
-    height: 40,
-    marginBottom: 10,
-  },
-  backButton: {
-    position: "absolute",
-    left: 0,
-    width: 38,
-    height: 38,
-    borderRadius: 19,
-    backgroundColor: "#1C1C1E",
-    borderWidth: 1,
-    borderColor: "#FFFFFF14",
-    justifyContent: "center",
-    alignItems: "center",
-    zIndex: 10,
-  },
-  backButtonText: {
-    color: "#FFFFFF",
-    fontSize: 16,
-    fontWeight: "700",
-  },
-  title: {
-    color: "#FFFFFF",
-    fontSize: 22,
-    fontWeight: "900",
-    textAlign: "center",
-  },
   hintTrigger: {
-    position: "absolute",
-    right: 0,
     width: 38,
     height: 38,
     borderRadius: 19,
@@ -161,7 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingBottom: 130,
+    width: "100%",
   },
   hintContainer: {
     height: 55,
