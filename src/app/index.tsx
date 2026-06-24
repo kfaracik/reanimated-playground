@@ -6,6 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import "../i18n";
 import KeyboardAvoidingScene from "../scenes/keyboard-avoiding/KeyboardAvoidingScene";
+import { ElegantLogoButton } from "../scenes/logo-haptics/LogoButton";
 import MainMenu from "../scenes/main-menu/MainMenu";
 import OnboardingAnimatedScroll from "../scenes/onboarding-animated-scroll/OnboardingAnimatedScroll";
 import PhysicsAnimationsScene from "../scenes/physics-animations/PhysicsAnimationsScene";
@@ -24,6 +25,7 @@ type Screen =
   | "physics-animations"
   | "sensor-sandbox"
   | "skia-gradient"
+  | "logo-button"
   | "onboarding-animation"
   | "onboarding-animated-scroll";
 
@@ -46,6 +48,7 @@ export default function HomeScreen() {
             onOpenPhysicsAnimations={() => setScreen("physics-animations")}
             onOpenSensorSandbox={() => setScreen("sensor-sandbox")}
             onOpenSkiaGradient={() => setScreen("skia-gradient")}
+            onOpenLogoButton={() => setScreen("logo-button")}
             onOnboardingAnimation={() => setScreen("onboarding-animation")}
             onOpenOnboardingAnimatedScroll={() =>
               setScreen("onboarding-animated-scroll")
@@ -78,6 +81,9 @@ export default function HomeScreen() {
         )}
         {screen === "skia-gradient" && (
           <SkiaGradientScene t={t} onBack={() => setScreen("menu")} />
+        )}
+        {screen === "logo-button" && (
+          <ElegantLogoButton t={t} onBack={() => setScreen("menu")} />
         )}
       </SafeAreaView>
     </View>
