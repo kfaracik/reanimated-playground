@@ -6,7 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import "../i18n";
 import KeyboardAvoidingScene from "../scenes/keyboard-avoiding/KeyboardAvoidingScene";
-import { ElegantLogoButton } from "../scenes/logo-haptics/LogoButton";
+import { LogoButton } from "../scenes/logo-haptics/LogoButtonScene";
 import MainMenu from "../scenes/main-menu/MainMenu";
 import OnboardingAnimatedScroll from "../scenes/onboarding-animated-scroll/OnboardingAnimatedScroll";
 import PhysicsAnimationsScene from "../scenes/physics-animations/PhysicsAnimationsScene";
@@ -83,7 +83,7 @@ export default function HomeScreen() {
           <SkiaGradientScene t={t} onBack={() => setScreen("menu")} />
         )}
         {screen === "logo-button" && (
-          <ElegantLogoButton t={t} onBack={() => setScreen("menu")} />
+          <LogoButton t={t} onBack={() => setScreen("menu")} />
         )}
       </SafeAreaView>
     </View>
