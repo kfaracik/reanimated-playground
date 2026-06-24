@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import SceneScreen from "../../app/shared/SceneScreen";
 import Solution1 from "./animations/Solution1";
 import Solution2 from "./animations/Solution2";
 import Solution3 from "./animations/Solution3";
@@ -18,21 +19,12 @@ export default function SolarSystemScene({
   const [activeSolution, setActiveSolution] = useState<MethodId>(1);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable
-          style={({ pressed }) => [
-            styles.backButton,
-            pressed && styles.pressed,
-          ]}
-          onPress={onBack}
-        >
-          <Text style={styles.backButtonText}>{t("solarSystem.back")}</Text>
-        </Pressable>
-        <Text style={styles.title}>{t("solarSystem.title")}</Text>
-        <Text style={styles.subtitle}>{t("solarSystem.subtitle")}</Text>
-      </View>
-
+    <SceneScreen
+      title={t("solarSystem.title")}
+      subtitle={t("solarSystem.subtitle")}
+      onBack={onBack}
+      framed={false}
+    >
       <View style={styles.methodRow}>
         <MethodButton
           title={t("methods.method1.title")}
@@ -59,7 +51,7 @@ export default function SolarSystemScene({
         {activeSolution === 2 && <Solution2 />}
         {activeSolution === 3 && <Solution3 />}
       </View>
-    </View>
+    </SceneScreen>
   );
 }
 
@@ -92,42 +84,6 @@ function MethodButton({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    paddingBottom: 18,
-  },
-  header: {
-    marginBottom: 18,
-  },
-  backButton: {
-    alignSelf: "flex-start",
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    borderRadius: 999,
-    backgroundColor: "#16213d",
-    borderWidth: 1,
-    borderColor: "#ffffff14",
-    marginBottom: 16,
-  },
-  backButtonText: {
-    color: "#ffffff",
-    fontSize: 13,
-    fontWeight: "700",
-    letterSpacing: 0.3,
-  },
-  title: {
-    color: "#ffffff",
-    fontSize: 24,
-    fontWeight: "800",
-  },
-  subtitle: {
-    color: "#93a4c3",
-    fontSize: 14,
-    lineHeight: 20,
-    marginTop: 8,
-  },
   methodRow: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -145,23 +101,23 @@ const styles = StyleSheet.create({
   },
   methodTitle: {
     borderRadius: 20,
-    backgroundColor: "#11182d",
-    color: "#cbd5e1",
+    backgroundColor: "#11182D",
+    color: "#CBD5E1",
     fontSize: 15,
     fontWeight: "700",
     paddingTop: 14,
     paddingHorizontal: 14,
     paddingBottom: 10,
     borderWidth: 1,
-    borderColor: "#ffffff14",
+    borderColor: "#FFFFFF14",
   },
   methodTitleActive: {
-    color: "#ffffff",
-    borderColor: "#3b82f6",
+    color: "#FFFFFF",
+    borderColor: "#3B82F6",
     backgroundColor: "#132445",
   },
   methodDescription: {
-    color: "#93a4c3",
+    color: "#93A4C3",
     fontSize: 12,
     lineHeight: 18,
     paddingHorizontal: 14,
@@ -170,9 +126,9 @@ const styles = StyleSheet.create({
   stage: {
     flex: 1,
     borderRadius: 28,
-    backgroundColor: "#10172b",
+    backgroundColor: "#10172B",
     borderWidth: 1,
-    borderColor: "#ffffff12",
+    borderColor: "#FFFFFF12",
     overflow: "hidden",
   },
   pressed: {

@@ -28,6 +28,10 @@ const en = {
       title: "Skia Gradient",
       description: "Background-layer gradient line drawn with Skia.",
     },
+    logoButton: {
+      title: "Logo Button",
+      description: "Tap a simple haptic logo button with animated particles.",
+    },
     onboarding: {
       title: "Onboarding Animation",
       description:
@@ -124,6 +128,9 @@ const en = {
   skiaGradient: {
     title: "Skia Gradient",
     subtitle: "Gradiented background line drawn with Skia.",
+  },
+  logoButton: {
+    title: "Logo Button",
   },
 } as const;
 

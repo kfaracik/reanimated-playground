@@ -1,5 +1,6 @@
 import { ReactNode, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import SceneScreen from "./SceneScreen";
 
 type TranslationFunction = (key: string) => string;
 
@@ -14,7 +15,6 @@ export default function TabbedScene({
   t,
   titleKey,
   subtitleKey,
-  backLabelKey,
   onBack,
   solutions,
   initialId,
@@ -22,7 +22,7 @@ export default function TabbedScene({
   t: TranslationFunction;
   titleKey: string;
   subtitleKey?: string;
-  backLabelKey: string;
+  backLabelKey?: string;
   onBack: () => void;
   solutions: SolutionEntry[];
   initialId?: string | number;
@@ -35,20 +35,11 @@ export default function TabbedScene({
   const active = solutions.find((s) => s.id === activeId) ?? solutions[0];
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable
-          onPress={onBack}
-          style={({ pressed }) => [pressed && styles.pressed]}
-        >
-          <Text style={styles.backButtonText}>{t(backLabelKey)}</Text>
-        </Pressable>
-        <Text style={styles.title}>{t(titleKey)}</Text>
-        {subtitleKey ? (
-          <Text style={styles.subtitle}>{t(subtitleKey)}</Text>
-        ) : null}
-      </View>
-
+    <SceneScreen
+      title={t(titleKey)}
+      subtitle={subtitleKey ? t(subtitleKey) : undefined}
+      onBack={onBack}
+    >
       <View style={styles.methodRow}>
         {solutions.map((s) => (
           <Pressable
@@ -67,46 +58,12 @@ export default function TabbedScene({
         ))}
       </View>
 
-      <View style={styles.stage}>{active && active.component}</View>
-    </View>
+      <View style={styles.content}>{active && active.component}</View>
+    </SceneScreen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 12,
-    paddingBottom: 18,
-  },
-  header: {
-    marginBottom: 18,
-  },
-  backButtonText: {
-    alignSelf: "flex-start",
-    paddingVertical: 10,
-    paddingHorizontal: 14,
-    borderRadius: 999,
-    backgroundColor: "#16213d",
-    borderWidth: 1,
-    borderColor: "#ffffff14",
-    marginBottom: 16,
-    color: "#ffffff",
-    fontSize: 13,
-    fontWeight: "700",
-    letterSpacing: 0.3,
-  },
-  title: {
-    color: "#ffffff",
-    fontSize: 24,
-    fontWeight: "800",
-  },
-  subtitle: {
-    color: "#93a4c3",
-    fontSize: 14,
-    lineHeight: 20,
-    marginTop: 8,
-  },
   methodRow: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -121,30 +78,25 @@ const styles = StyleSheet.create({
   },
   methodTitle: {
     borderRadius: 20,
-    backgroundColor: "#11182d",
-    color: "#cbd5e1",
+    backgroundColor: "#11182D",
+    color: "#CBD5E1",
     fontSize: 15,
     fontWeight: "700",
     paddingTop: 14,
     paddingHorizontal: 14,
     paddingBottom: 10,
     borderWidth: 1,
-    borderColor: "#ffffff14",
+    borderColor: "#FFFFFF14",
   },
   methodDescription: {
-    color: "#93a4c3",
+    color: "#93A4C3",
     fontSize: 12,
     lineHeight: 18,
     paddingHorizontal: 14,
     paddingTop: 8,
   },
-  stage: {
+  content: {
     flex: 1,
-    borderRadius: 28,
-    backgroundColor: "#10172b",
-    borderWidth: 1,
-    borderColor: "#ffffff12",
-    overflow: "hidden",
   },
   pressed: {
     transform: [{ scale: 0.99 }],

@@ -12,6 +12,7 @@ export default function MainMenu({
   onOpenPhysicsAnimations,
   onOpenSensorSandbox,
   onOpenSkiaGradient,
+  onOpenLogoButton,
   onOnboardingAnimation,
   onOpenOnboardingAnimatedScroll,
 }: {
@@ -23,6 +24,7 @@ export default function MainMenu({
   onOpenPhysicsAnimations: () => void;
   onOpenSensorSandbox?: () => void;
   onOpenSkiaGradient?: () => void;
+  onOpenLogoButton?: () => void;
   onOnboardingAnimation?: () => void;
   onOpenOnboardingAnimatedScroll?: () => void;
 }) {
@@ -69,6 +71,13 @@ export default function MainMenu({
             title={t("groups.skiaGradient.title")}
             description={t("groups.skiaGradient.description")}
             onPress={onOpenSkiaGradient}
+          />
+        )}
+        {onOpenLogoButton && (
+          <TaskGroupCard
+            title={t("groups.logoButton.title")}
+            description={t("groups.logoButton.description")}
+            onPress={onOpenLogoButton}
           />
         )}
         {onOnboardingAnimation && (

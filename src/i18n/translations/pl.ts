@@ -29,6 +29,10 @@ const pl = {
       description:
         "Linia gradientowa rysowana na warstwie tła przy użyciu Skia.",
     },
+    logoButton: {
+      title: "Przycisk Logo",
+      description: "Prosty przycisk z haptyką i animowanymi cząsteczkami.",
+    },
     onboarding: {
       title: "Animacja Onboardingu",
       description:
@@ -119,6 +123,9 @@ const pl = {
   skiaGradient: {
     title: "Gradient Skia",
     subtitle: "Gradientowa linia tła rysowana za pomocą Skia.",
+  },
+  logoButton: {
+    title: "Przycisk Logo",
   },
   common: {
     back: "Wróć do menu",
