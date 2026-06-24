@@ -33,6 +33,10 @@ const pl = {
       title: "Przycisk Logo",
       description: "Prosty przycisk z haptyką i animowanymi cząsteczkami.",
     },
+    chess: {
+      title: "Szachy",
+      description: "Interaktywna szachownica z gestami i animacjami figur.",
+    },
     onboarding: {
       title: "Animacja Onboardingu",
       description:
@@ -126,6 +130,9 @@ const pl = {
   },
   logoButton: {
     title: "Przycisk Logo",
+  },
+  chess: {
+    title: "Szachy",
   },
   common: {
     back: "Wróć do menu",

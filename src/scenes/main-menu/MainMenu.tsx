@@ -13,6 +13,7 @@ export default function MainMenu({
   onOpenSensorSandbox,
   onOpenSkiaGradient,
   onOpenLogoButton,
+  onOpenChess,
   onOnboardingAnimation,
   onOpenOnboardingAnimatedScroll,
 }: {
@@ -25,6 +26,7 @@ export default function MainMenu({
   onOpenSensorSandbox?: () => void;
   onOpenSkiaGradient?: () => void;
   onOpenLogoButton?: () => void;
+  onOpenChess?: () => void;
   onOnboardingAnimation?: () => void;
   onOpenOnboardingAnimatedScroll?: () => void;
 }) {
@@ -78,6 +80,13 @@ export default function MainMenu({
             title={t("groups.logoButton.title")}
             description={t("groups.logoButton.description")}
             onPress={onOpenLogoButton}
+          />
+        )}
+        {onOpenChess && (
+          <TaskGroupCard
+            title={t("groups.chess.title")}
+            description={t("groups.chess.description")}
+            onPress={onOpenChess}
           />
         )}
         {onOnboardingAnimation && (

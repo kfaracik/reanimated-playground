@@ -32,6 +32,10 @@ const en = {
       title: "Logo Button",
       description: "Tap a simple haptic logo button with animated particles.",
     },
+    chess: {
+      title: "Chess",
+      description: "Interactive chessboard with gestures and piece animations.",
+    },
     onboarding: {
       title: "Onboarding Animation",
       description:
@@ -131,6 +135,9 @@ const en = {
   },
   logoButton: {
     title: "Logo Button",
+  },
+  chess: {
+    title: "Chess",
   },
 } as const;
 

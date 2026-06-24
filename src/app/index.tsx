@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import "../i18n";
+import ChessScene from "../scenes/chess/ChessScene";
 import KeyboardAvoidingScene from "../scenes/keyboard-avoiding/KeyboardAvoidingScene";
 import { LogoButton } from "../scenes/logo-haptics/LogoButtonScene";
 import MainMenu from "../scenes/main-menu/MainMenu";
@@ -26,6 +27,7 @@ type Screen =
   | "sensor-sandbox"
   | "skia-gradient"
   | "logo-button"
+  | "chess"
   | "onboarding-animation"
   | "onboarding-animated-scroll";
 
@@ -49,6 +51,7 @@ export default function HomeScreen() {
             onOpenSensorSandbox={() => setScreen("sensor-sandbox")}
             onOpenSkiaGradient={() => setScreen("skia-gradient")}
             onOpenLogoButton={() => setScreen("logo-button")}
+            onOpenChess={() => setScreen("chess")}
             onOnboardingAnimation={() => setScreen("onboarding-animation")}
             onOpenOnboardingAnimatedScroll={() =>
               setScreen("onboarding-animated-scroll")
@@ -84,6 +87,9 @@ export default function HomeScreen() {
         )}
         {screen === "logo-button" && (
           <LogoButton t={t} onBack={() => setScreen("menu")} />
+        )}
+        {screen === "chess" && (
+          <ChessScene t={t} onBack={() => setScreen("menu")} />
         )}
       </SafeAreaView>
     </View>
