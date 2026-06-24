@@ -100,7 +100,7 @@ export const LogoButton = ({
               style={styles.logoImage}
               resizeMode="contain"
             />
-            <Text style={styles.clickMeText}>CLICK ME →</Text>
+            <Text style={styles.clickMeText}>CLICK ME</Text>
           </Animated.View>
         </Pressable>
       </View>
