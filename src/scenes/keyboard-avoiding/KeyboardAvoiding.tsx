@@ -1,18 +1,17 @@
 import React from "react";
 import { Image, Platform, StyleSheet, TextInput, View } from "react-native";
-import { useAnimatedKeyboard } from "react-native-keyboard-controller";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import { useKeyboardHeight } from "./hooks/useKeyboardHeight";
 
 export const KeyboardAvoiding = () => {
-  const keyboard = useAnimatedKeyboard();
+  const keyboardHeight = useKeyboardHeight();
   const insets = useSafeAreaInsets();
 
   const animatedStyle = useAnimatedStyle(() => {
-    const keyboardHeight = keyboard.height.value;
     const baseDistance = 250;
 
     const distanceToBottom =
@@ -23,8 +22,8 @@ export const KeyboardAvoiding = () => {
     const targetOffset = Platform.OS === "ios" ? -4 : 8;
 
     const overlap =
-      keyboardHeight > distanceToBottom
-        ? keyboardHeight - distanceToBottom + targetOffset
+      keyboardHeight.value > distanceToBottom
+        ? keyboardHeight.value - distanceToBottom + targetOffset
         : 0;
 
     return {
