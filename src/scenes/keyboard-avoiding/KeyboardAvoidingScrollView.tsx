@@ -7,24 +7,22 @@ import {
   TextInput,
   View,
 } from "react-native";
-import { useAnimatedKeyboard } from "react-native-keyboard-controller";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+import { useKeyboardHeight } from "./hooks/useKeyboardHeight";
 
 export const KeyboardAvoiding = () => {
-  const keyboard = useAnimatedKeyboard();
+  const keyboardHeight = useKeyboardHeight();
   const insets = useSafeAreaInsets();
 
   const spacerStyle = useAnimatedStyle(() => {
-    const keyboardHeight = keyboard.height.value;
-
     const height =
       Platform.OS === "ios"
-        ? Math.max(0, keyboardHeight - insets.bottom - 50)
-        : keyboardHeight;
+        ? Math.max(0, keyboardHeight.value - insets.bottom - 50)
+        : keyboardHeight.value;
 
     return {
       height,
