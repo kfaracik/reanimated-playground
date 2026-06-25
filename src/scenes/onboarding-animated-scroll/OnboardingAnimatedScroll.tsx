@@ -1,8 +1,8 @@
 import React from "react";
 import {
+  Pressable,
   StyleSheet,
   Text,
-  TouchableOpacity,
   useWindowDimensions,
   View,
 } from "react-native";
@@ -69,24 +69,28 @@ export default function Onboarding({ onBack }: OnboardingProps) {
       <View style={styles.fixedFooter}>
         <View style={styles.paginationContainer}>
           {SLIDES.map((_, index) => (
-            <TouchableOpacity
+            <Pressable
               key={index}
-              activeOpacity={0.7}
               onPress={() => handlePageSelect(index)}
-              style={styles.paginationTouchTarget}
+              style={({ pressed }) => [
+                styles.paginationTouchTarget,
+                pressed && styles.paginationTouchTargetPressed,
+              ]}
             >
               <PaginationBar index={index} scrollX={scrollX} width={width} />
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.9}
-          style={styles.primaryButton}
+        <Pressable
+          style={({ pressed }) => [
+            styles.primaryButton,
+            pressed && styles.primaryButtonPressed,
+          ]}
           onPress={onBack}
         >
           <Text style={styles.primaryButtonText}>Go Back</Text>
-        </TouchableOpacity>
+        </Pressable>
       </View>
     </View>
   );
@@ -116,6 +120,9 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 6,
   },
+  paginationTouchTargetPressed: {
+    opacity: 0.7,
+  },
   primaryButton: {
     width: "100%",
     height: 56,
@@ -127,6 +134,9 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
     shadowRadius: 8,
+  },
+  primaryButtonPressed: {
+    opacity: 0.9,
   },
   primaryButtonText: {
     color: "#09090B",

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SENSOR_LEVELS, SensorLevel } from "../constants/gameConfig";
 
 type StickyFooterProps = {
@@ -16,12 +16,13 @@ export const StickyFooter = ({
   <View style={styles.stickyFooter}>
     <View style={styles.buttonGrid}>
       {SENSOR_LEVELS.map((level) => (
-        <TouchableOpacity
+        <Pressable
           key={level}
-          style={[
+          style={({ pressed }) => [
             styles.button,
             activeLevel === level && styles.buttonActive,
             solvedLevels[level] && styles.buttonSolved,
+            pressed && styles.buttonPressed,
           ]}
           onPress={() => onLevelSelect(level)}
         >
@@ -34,7 +35,7 @@ export const StickyFooter = ({
           >
             {level}
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       ))}
     </View>
   </View>
@@ -74,6 +75,9 @@ const styles = StyleSheet.create({
   buttonSolved: {
     borderColor: "#00E6764D",
     backgroundColor: "#00E67614",
+  },
+  buttonPressed: {
+    opacity: 0.75,
   },
   buttonText: {
     color: "#71717A",

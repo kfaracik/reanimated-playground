@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import SceneScreen from "../../../app/shared/SceneScreen";
 import { GameRunner } from "../components/GameRunner";
 import { LevelBadge } from "../components/LevelBadge";
@@ -40,9 +40,12 @@ export default function SensorSandbox({ t, onBack }: SensorSandboxProps) {
       contentCentered
       contentPaddingBottom={130}
       rightAction={
-        <TouchableOpacity
-          activeOpacity={0.8}
-          style={[styles.hintTrigger, showHint && styles.hintTriggerActive]}
+        <Pressable
+          style={({ pressed }) => [
+            styles.hintTrigger,
+            showHint && styles.hintTriggerActive,
+            pressed && styles.hintTriggerPressed,
+          ]}
           onPress={() => setShowHint((visible) => !visible)}
         >
           <Text
@@ -53,7 +56,7 @@ export default function SensorSandbox({ t, onBack }: SensorSandboxProps) {
           >
             ?
           </Text>
-        </TouchableOpacity>
+        </Pressable>
       }
       footer={
         <StickyFooter
@@ -103,6 +106,9 @@ const styles = StyleSheet.create({
   hintTriggerActive: {
     backgroundColor: "#FFFFFF",
     borderColor: "#FFFFFF",
+  },
+  hintTriggerPressed: {
+    opacity: 0.8,
   },
   hintTriggerText: {
     color: "#A1A1AA",

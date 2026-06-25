@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type SceneScreenProps = {
   title: string;
@@ -27,9 +27,15 @@ export default function SceneScreen({
   return (
     <View style={styles.container}>
       <View style={styles.headerRow}>
-        <TouchableOpacity style={styles.headerButton} onPress={onBack}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.headerButton,
+            pressed && styles.headerButtonPressed,
+          ]}
+          onPress={onBack}
+        >
           <Text style={styles.headerButtonText}>{"<"}</Text>
-        </TouchableOpacity>
+        </Pressable>
 
         <View style={styles.titleWrapper}>
           <Text style={styles.title}>{title}</Text>
@@ -83,6 +89,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     zIndex: 10,
+  },
+  headerButtonPressed: {
+    opacity: 0.75,
   },
   headerButtonText: {
     color: "#FFFFFF",
